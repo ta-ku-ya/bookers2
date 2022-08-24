@@ -19,13 +19,26 @@
         <span class="navbar-toggler-icon"></span>
        </button>
 
-       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <li>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+         <ul class="navbar-nav ml-auto">
 
-              <i class="fas fa-home"></i>
-
-          </li>
+           <i class="fas fa-home"></i>
+             <a><%= link_to "Home", root_path %></a>
+           <% if user_signed_in? %>
+            <i class="fas fa-users"></i>
+              <a><%= link_to "Users", user_path(current_user) %></a>
+            <i class="fas fa-book-open"></i>
+              <a><%= link_to "Books", books_path %></a>
+            <i class="fas fa-sign-out-alt"></i>
+              <a> <%= link_to "log out", destroy_user_session_path, method: :delete %></a>
+          <% else %>
+            <i class="fas fa-link"></i>
+              <a><%= link_to "About", about_path %></a>
+            <i class="fas fa-user-plus"></i>
+              <a><%= link_to "Sign up",  new_user_registration_path %></a>
+            <i class="fas fa-sign-in-alt"></i>
+              <a> <%= link_to "Log in", new_user_session_path %></a>
+　　　　　<% end %>
 
          </ul>
        </div>
@@ -35,5 +48,14 @@
     <main class="mb-auto">
     <%= yield %>
     </main>
+    <footer
+    ><div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+   </div>
+     </footer>
   </body>
 </html>
