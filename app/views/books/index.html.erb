@@ -1,7 +1,22 @@
 <main>
- <%= render 'user info', books: @books %>
 
 
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-lg-3">
+     <%= render 'user info', books: @books %>
+
+
+</div>
     <div class="col-lg-8 offset-lg-1">
      <h2>Books</h2>
       <table class="table table-hover table-inverse">
